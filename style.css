@@ -1,0 +1,237 @@
+/* =====================================================
+   TOKENS — change a color/font ONCE here, updates everywhere
+   ===================================================== */
+:root{
+  --bg: #0a0b0d;             /* COLOR — main page background (near-black) */
+  --panel: #111317;          /* COLOR — background of alternate/dark sections */
+  --line: #2a2e33;           /* COLOR — border/divider lines everywhere */
+  --text: #f3f4f5;           /* COLOR — main text color (near-white) */
+  --muted: #9aa1a8;          /* COLOR — grey secondary text (paragraphs) */
+  --accent: #ffb020;         /* COLOR — the amber highlight color (buttons, eyebrows) */
+  --font-display: 'Space Grotesk', sans-serif;  /* FONT — headings, SWING text */
+  --font-body: 'Inter', sans-serif;             /* FONT — normal paragraph text */
+  --font-mono: 'IBM Plex Mono', monospace;      /* FONT — small tech-style labels */
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);      /* COLOR — uses --bg above */
+  color:var(--text);         /* COLOR — uses --text above */
+  font-family:var(--font-body);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit; text-decoration:none;}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; letter-spacing:-0.01em;}
+img{display:block; max-width:100%;}
+
+/* =====================================================
+   PLACEHOLDER BOXES — the dashed "ADD IMAGE" boxes
+   Delete this whole block once every placeholder is replaced with a real <img>
+   ===================================================== */
+.placeholder{
+  position:relative;
+  width:100%;
+  min-height:220px;          /* SIZE — height of big placeholder boxes */
+  background:
+    repeating-linear-gradient(45deg, #1a1c20, #1a1c20 10px, #17181b 10px, #17181b 20px);
+  border:1px dashed var(--line);   /* COLOR — dashed border color */
+  border-radius:4px;
+  display:flex; align-items:center; justify-content:center;
+  text-align:center;
+}
+.placeholder::before{
+  content: attr(data-label);
+  font-family:var(--font-mono);
+  font-size:0.72rem;         /* SIZE — placeholder label text size */
+  color:var(--muted);        /* COLOR — placeholder label text color */
+  padding:1rem;
+}
+.placeholder-sm{min-height:140px;}     /* SIZE — smaller placeholder (pillar images) */
+.placeholder-card{min-height:180px; margin-bottom:1rem;}  /* SIZE — program card images */
+
+/* =====================================================
+   NAV BAR — top of page: logo, SWING text, menu links
+   ===================================================== */
+.nav{
+  position:sticky; top:0; z-index:50;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0.9rem 4vw;                    /* SIZE — nav bar height/breathing room */
+  background:rgba(10,11,13,0.85);        /* COLOR — nav bar background */
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);   /* COLOR — line under the nav */
+}
+.brand{display:flex; align-items:center; gap:0.6rem;}   /* SIZE — gap between logo and text */
+
+/* --- LOGO IMAGE --- */
+.brand-mark{
+  width:49px; height:49px;        /* SIZE — logo badge dimensions. Change both together. */
+  object-fit:contain;
+  
+}
+
+/* --- "SWING" TEXT --- */
+.brand-word{
+  font-family:var(--font-display);
+  font-weight:500;
+  font-size:1.55rem;
+  letter-spacing:0.42em;
+  text-transform:uppercase;
+  line-height:1;
+}
+
+.nav-links{display:flex; gap:2rem;}     /* SIZE — gap between menu links */
+.nav-links a{font-size:0.9rem; color:var(--muted); transition:color .2s;}   /* SIZE + COLOR — menu link text */
+.nav-links a:hover{color:var(--text);}                                     /* COLOR — menu link on hover */
+.nav-cta{
+  font-family:var(--font-mono); font-size:0.8rem;    /* SIZE — "Work with us" button text */
+  border:1px solid var(--accent); color:var(--accent);  /* COLOR — button outline + text */
+  padding:0.5rem 1rem; border-radius:2px;
+  transition: background .2s, color .2s;
+}
+.nav-cta:hover{background:var(--accent); color:#0a0b0d;}
+.nav-toggle{display:none; background:none; border:none; color:var(--text); font-size:1.4rem;}  /* mobile ☰ icon */
+
+/* =====================================================
+   HERO — the big headline section at the very top
+   ===================================================== */
+.hero{
+  position:relative;
+  padding:7rem 4vw 4rem;      /* SIZE — spacing around the whole hero section */
+  overflow:hidden;
+}
+.hero-grid{
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size:64px 64px;   /* SIZE — grid line spacing (the faint background grid) */
+  opacity:0.15;                /* how faint the grid lines are, 0 = invisible, 1 = solid */
+  mask-image: radial-gradient(ellipse at 20% 0%, black, transparent 70%);
+}
+.eyebrow{
+  font-family:var(--font-mono); font-size:0.78rem; letter-spacing:0.18em;  /* SIZE + SPACING */
+  color:var(--accent);        /* COLOR — "AEROSPACE · DEFENCE · INNOVATION" text */
+  margin-bottom:1.2rem; position:relative;
+}
+.hero h1{
+  font-size:clamp(2.4rem, 5.5vw, 4.6rem);   /* SIZE — main headline. Min 2.4rem, max 4.6rem, scales with screen */
+  line-height:1.05;
+  max-width:16ch;
+  position:relative;
+}
+.hero-sub{
+  margin-top:1.4rem;
+  max-width:46ch;
+  color:var(--muted);          /* COLOR — subtitle paragraph under the headline */
+  font-size:1.05rem;           /* SIZE — subtitle text size */
+  position:relative;
+}
+.hero-actions{
+  margin-top:2.2rem;
+  display:flex; gap:1rem;      /* SIZE — gap between the two hero buttons */
+  position:relative;
+}
+
+/* --- BUTTONS (used across the whole site) --- */
+.btn{
+  font-family:var(--font-mono); font-size:0.85rem;   /* SIZE — button text */
+  padding:0.85rem 1.6rem;      /* SIZE — button padding (bigger padding = bigger button) */
+  border-radius:2px;           /* SIZE — button corner roundness */
+  border:1px solid transparent;
+  display:inline-block;
+  transition: all .2s;
+}
+.btn-primary{background:var(--accent); color:#0a0b0d; font-weight:600;}  /* COLOR — solid amber button */
+.btn-primary:hover{background:#ffc457;}                                  /* COLOR — amber button on hover */
+.btn-ghost{border-color:var(--line); color:var(--text);}                 /* COLOR — outline-only button */
+.btn-ghost:hover{border-color:var(--accent); color:var(--accent);}       /* COLOR — outline button on hover */
+.hero-visual{margin-top:3.5rem; position:relative;}   /* SIZE — space above the hero image placeholder */
+
+/* =====================================================
+   SECTIONS — shared spacing rules for every content section
+   ===================================================== */
+.section{padding:6rem 4vw;}     /* SIZE — top/bottom spacing for every section */
+.section-alt{
+  background:var(--panel);      /* COLOR — slightly lighter dark background (used by R&D section) */
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+}
+.section-eyebrow{
+  font-family:var(--font-mono); font-size:0.78rem; letter-spacing:0.16em;  /* SIZE — "01 — WHAT WE BUILD" labels */
+  color:var(--accent); margin-bottom:0.8rem;      /* COLOR — amber label color */
+}
+.section h2{font-size:clamp(1.7rem, 3vw, 2.4rem); margin-bottom:2.8rem; max-width:20ch;}  /* SIZE — section titles */
+
+/* --- PILLARS (Aerospace / Propulsion / Autonomy cards) --- */
+.pillars{display:grid; grid-template-columns:repeat(3, 1fr); gap:2.5rem;}  /* SIZE — gap between the 3 cards */
+.pillar-mark{
+  display:block; width:22px; height:22px; margin-bottom:1rem;   /* SIZE — small lightning-bolt icon */
+  background:var(--accent);    /* COLOR — icon color */
+  clip-path:polygon(60% 0%, 100% 0%, 30% 100%, 0% 100%, 40% 45%);
+}
+.pillar h3{font-size:1.2rem; margin-bottom:0.6rem;}      /* SIZE — "Aerospace" / "Propulsion" / "Autonomy" title */
+.pillar p{color:var(--muted); font-size:0.92rem; margin-bottom:1.2rem;}   /* SIZE + COLOR — description text */
+
+/* --- R&D PROCESS STRIP (Research → Prototype → Test → Deploy) --- */
+.process{display:flex; align-items:flex-start; gap:0; flex-wrap:wrap;}
+.process-step{flex:1; min-width:150px;}
+.step-index{
+  display:block; font-family:var(--font-mono); color:var(--accent);   /* COLOR — "Research" etc labels */
+  font-size:0.85rem; margin-bottom:0.5rem; letter-spacing:0.05em;     /* SIZE */
+}
+.process-step p{color:var(--muted); font-size:0.9rem;}                /* SIZE + COLOR — description under each step */
+.process-line{
+  flex:0 0 40px; height:1px; background:var(--line);   /* COLOR — the little divider line between steps */
+  margin-top:0.6rem; align-self:flex-start;
+}
+@media (max-width:800px){ .process-line{display:none;} }
+
+/* --- PROGRAMS GRID (3 program cards) --- */
+.programs-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:2rem;}   /* SIZE — gap between cards */
+.card{
+  border:1px solid var(--line);   /* COLOR — card border */
+  border-radius:4px; padding:1.2rem;
+  background:var(--panel);        /* COLOR — card background */
+}
+.card h3{font-size:1.1rem; margin-bottom:0.4rem;}          /* SIZE — program title */
+.card p{color:var(--muted); font-size:0.88rem;}             /* SIZE + COLOR — program description */
+
+/* --- COLLABORATION CTA BAND --- */
+.collab{
+  padding:6rem 4vw; text-align:center;
+  background:linear-gradient(180deg, var(--bg), #16130a);   /* COLOR — dark-to-warm gradient background */
+  border-top:1px solid var(--line);
+}
+.collab h2{font-size:clamp(1.8rem, 4vw, 2.6rem); margin-bottom:0.8rem;}   /* SIZE — "Build the future with us." */
+.collab p{color:var(--muted); margin-bottom:2rem;}                        /* COLOR — subtitle text */
+
+/* --- CAREERS SECTION --- */
+.careers{text-align:center;}
+.careers h2{margin:0 auto 0.8rem;}
+.careers-sub{color:var(--muted); max-width:44ch; margin:0 auto 2rem;}     /* COLOR — hiring description text */
+
+/* =====================================================
+   FOOTER — bottom of page: logo, links, copyright
+   ===================================================== */
+.footer{padding:3rem 4vw 2rem; border-top:1px solid var(--line);}   /* COLOR — line above footer */
+.footer-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;}
+.footer-mark{
+  width:32px; height:32px;      /* SIZE — footer logo badge size */
+  object-fit:contain;
+            /* COLOR — white chip behind footer logo */
+  border-radius:6px; padding:3px;
+}
+.footer-links{display:flex; gap:1.6rem;}                                  /* SIZE — gap between footer links */
+.footer-links a{color:var(--muted); font-size:0.88rem;}                   /* SIZE + COLOR — footer link text */
+.footer-links a:hover{color:var(--text);}                                 /* COLOR — footer link on hover */
+.footer-bottom{color:var(--muted); font-size:0.78rem; font-family:var(--font-mono);}  /* COLOR — copyright line */
+
+/* =====================================================
+   RESPONSIVE — rules that kick in on phones/tablets (screen under 900px)
+   ===================================================== */
+@media (max-width:900px){
+  .pillars, .programs-grid{grid-template-columns:1fr;}   /* stack cards into 1 column on mobile */
+  .nav-links, .nav-cta{display:none;}                     /* hide desktop menu on mobile */
+  .nav-toggle{display:block;}                             /* show ☰ button on mobile */
+}

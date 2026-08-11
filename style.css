@@ -133,6 +133,25 @@ img{display:block; max-width:100%;}
   display:flex; gap:1rem;      /* SIZE — gap between the two hero buttons */
   position:relative;
 }
+/* =====================================================
+   HERO VISUAL — aerospace / defence hero image
+   ===================================================== */
+.hero-visual{
+  margin-top:2rem;              /* SIZE — space between hero text and hero image */
+  position:relative;            /* LAYOUT — keeps the image container positioned correctly */
+  width:100%;                   /* SIZE — hero image uses the full available width */
+  overflow:hidden;              /* LAYOUT — prevents image from overflowing the container */
+}
+
+
+/* --- HERO IMAGE --- */
+.hero-visual img{
+  width:100%;                   /* SIZE — image fills the entire hero container width */
+  aspect-ratio:16 / 6;          /* SIZE — keeps the image in 1920×1080 / 16:9 format */
+  height:auto;                  /* SIZE — maintains the image's natural proportions */
+  display:block;                /* LAYOUT — removes unwanted inline-image spacing */
+  border:1px solid var(--line); /* COLOR — subtle border using the site's existing line color */
+}
 
 /* --- BUTTONS (used across the whole site) --- */
 .btn{
